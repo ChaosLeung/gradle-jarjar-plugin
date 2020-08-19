@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'com.chaos.gradle.plugin.jarjar'
+}
+
+ext {
+    javaMainClass = "com.chaos.gradle.plugin.jarjar.demo.Test"
+
+    jarjarInCompileTime = true
+}
+
+sourceSets {
+    main {
+        java {
+            if (jarjarInCompileTime) {
+                srcDir 'src/compile/java'
+            } else {
+                srcDir 'src/source/java'
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    jarjar "com.squareup.okhttp3:okhttp:4.8.1"
+}
+
+jarjar {
+    useInCompileTime jarjarInCompileTime
+
+    rule 'okio.** com.chaos.okio.@1'
+    rule 'org.jetbrains.** com.chaos.@1'
+}

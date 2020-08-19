@@ -1,0 +1,12 @@
+buildscript {
+    repositories {
+        maven {
+            url uri("$project.rootProject.rootDir.path/repos")
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.chaos.gradle.plugin:jarjar:1.0.0"
+    }
+}

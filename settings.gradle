@@ -1,0 +1,4 @@
+rootProject.name = 'gradle-jarjar-plugin'
+
+include 'jarjar'
+include 'java-sample'

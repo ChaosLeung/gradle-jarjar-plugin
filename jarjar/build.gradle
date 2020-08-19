@@ -1,0 +1,24 @@
+plugins {
+    id 'groovy'
+    id 'maven'
+}
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.googlecode.jarjar:jarjar:1.3'
+}
+
+group = "com.chaos.gradle.plugin"
+version = "1.0.0"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("$project.rootDir.path/repos"))
+        }
+    }
+}
